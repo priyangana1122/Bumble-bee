@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+
+    <!-- JS Files -->
+    <script src="../Restaurant/js/main.js"> </script>
+
+    <script type="text/javascript">
+        // var getInputArray = JSON.parse(localStorage.getItem('setInputArray'));
+
+        function loadAll(){
+          var food_name = localStorage.getItem('food_name');
+          var foodNames = JSON.parse(food_name);
+          
+          var totalArray = localStorage.getItem('total');
+          var totalValues = JSON.parse(totalArray);
+
+          var totalCost = 0;
+          
+          var myTableDiv = document.getElementById("tableHere");
+
+          var table = document.createElement('TABLE');
+          table.border='1';
+          table.style.width='100%';
+
+          var tr = document.createElement('TR');
+
+          var th = document.createElement('TH');
+          th.appendChild(document.createTextNode("Food Name"));
+          tr.appendChild(th);
+
+          var th = document.createElement('TH');
+          th.appendChild(document.createTextNode("Total Cost (USD)"));
+          tr.appendChild(th);
+
+          table.appendChild(tr);
+          
+          var tableBody = document.createElement('TBODY');
+          
+          for(let l=0; l<foodNames.length; l++){
+            var tr = document.createElement('TR');
+          
+            var td = document.createElement('TD');
+            td.appendChild(document.createTextNode(foodNames[l]));
+            tr.appendChild(td);
+
+            var td = document.createElement('TD');
+            td.style.textAlign='center';
+            td.appendChild(document.createTextNode(totalValues[l]+'.00'));
+            tr.appendChild(td);
+
+            totalCost += totalValues[l];
+
+            tableBody.appendChild(tr);
+          }
+
+          var tr = document.createElement('TR');
+          tr.style.color='yellow';
+
+          var th = document.createElement('TH');
+          th.appendChild(document.createTextNode('Total Cost'));
+          tr.appendChild(th);
+
+          var th = document.createElement('TH');
+          th.appendChild(document.createTextNode(totalCost + '.00'));
+          tr.appendChild(th);
+
+          tableBody.appendChild(tr);
+
+          table.appendChild(tableBody);
+          
+          myTableDiv.appendChild(table);
+
+          document.getElementById("order_total").value=totalCost;
+
+          if(localStorage.getItem('cusName') != ''){
+            document.getElementById("cusName").value = localStorage.getItem('cusName');
+          }
+
+          if(localStorage.getItem('contact_no') != ''){
+            document.getElementById("contact_no").value = localStorage.getItem('contact_no');
+          }
+
+          if(localStorage.getItem('email') != ''){
+            document.getElementById("email").value = localStorage.getItem('email');
+          }
+
+          if(localStorage.getItem('address') != ''){
+            document.getElementById("address").value = localStorage.getItem('address');
+          }
+          
+        }
+
+        function deleteAll() {
+          event.preventDefault();
+
+          window.localStorage.clear();
+          var myTableDiv = document.getElementById("tableHere");
+          myTableDiv.style.display='none';
+
+          document.getElementById("cusName").value = '';
+          document.getElementById("contact_no").value = '';
+          document.getElementById("email").value = '';
+          document.getElementById("address").value = '';
+        }
+
+        // console.log(customerName);
+
+        function passValues() {
+          var cusName = document.getElementById("cusName").value;
+          var contact_no = document.getElementById("contact_no").value;
+          var email = document.getElementById("email").value;
+          var order_total = document.getElementById("order_total").value;
+          var address = document.getElementById("address").value;
+
+          localStorage.setItem('cusName', cusName);
+          localStorage.setItem('contact_no', contact_no);
+          localStorage.setItem('email', email);
+          localStorage.setItem('order_total', order_total);
+          localStorage.setItem('address', address);
+
+          return false;
+        }
+      
+    </script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../Restaurant/css/footerstyle.css">
+    <link rel="stylesheet" href="../Restaurant/css/headerstyle.css">
+
+    <!-- JS Files -->
+    <!-- <script src="../Restaurant/js/main.js"> </script> -->
+
+    <style>
+      .left-side {
+        transition: 10s;
+
+        animation: animate 20s infinite ease-in-out;
+      }
+
+      @keyframes animate{
+        0%{
+          background-image: url('images/TheGarden1.png');
+        }
+        20%{
+          background-image: url('images/TheGarden2.png');
+        }
+        40%{
+          background-image: url('images/TheGarden3.png');
+        }
+        60%{
+          background-image: url('images/TheGarden4.png');
+        }
+        80%{
+          background-image: url('images/TheGarden5.png');
+        }
+        100%{
+          background-image: url('images/TheGarden5.png');
+        }
+
+      }
+
+    </style>
+    <title>Garden Indian Restaurant</title>
+  </head>
+  <body onload="loadAll();">
+
+    <div class="pc-version">
+      <nav class="navbar">
+        <!-- LOGO -->
+        <div class="pc-header" style="width:40%; padding:0px 20px;">
+          <h1>The Garden Indian Restaurant</h1>
+        </div>
+        <!-- NAVIGATION MENU -->
+        <ul class="nav-links" style="width:60%;">
+            <!-- NAVIGATION MENUS -->
+            <table>
+              <colgroup>
+                <col width="auto">
+                <col width="auto">
+                <col width="auto">
+                <col width="auto">
+                <col width="auto">
+                <col width="auto">
+              </colgroup>
+              <tr>
+                <td> <a href="../Restaurant/Home.html">Home </a> </td>
+                <td> <a href="../Restaurant/About.html">About </a> </td>
+                <td> <a href="../Restaurant/LunchMenu.html">Lunch Menu </a> </td>
+                <td> <a href="../Restaurant/DinnerMenu.html">Dinner Menu </a> </td>
+                <td> <a href="../Restaurant/TakeAwayMenu.html">Take Away Menu </a> </td>
+                <td style="border-right: 0px;"> <a href="../Restaurant/Bookings.html">Bookings </a> </td>
+              </tr>
+            </table>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="mobile-version">
+      <div class="menu-container">
+        <input type="checkbox" id="openmenu" class="men-check">
+        <div class="menu-icon" style="z-index: 3;">
+          <label for="openmenu" id="hamburger-label">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>    
+        </div>
+      
+        <div class="menu-pane" style="z-index: 2;">
+          <nav>
+            <ul class="menu-links">
+              <li><a href="../Restaurant/Home.html">Home</a></li>
+              <li><a href="../Restaurant/About.html">About</a></li>
+              <li><a href="../Restaurant/LunchMenu.html">Lunch Menu</a></li>
+              <li><a href="../Restaurant/DinnerMenu.html">Dinner Menu</a></li>
+              <li><a href="../Restaurant/TakeAwayMenu.html">Take Away Menu</a></li>
+              <li><a href="../Restaurant/Bookings.html">Bookings</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="content scroll-lock-page">
+      <div class="left-side">
+        <!-- <img src="images/home-image.jpg" width="100%"> -->
+      </div>
+  
+      <div class="right-side" style="background-color: #241d1d;">
+        <h1 align="center">
+          Thank You <br>For Your Order!
+        </h1>
+
+        <div class="content-text-home">
+            <div class="form">
+              <div id="tableHere">
+
+              </div>
+
+              <form action="orderFinal.html">
+                <center>
+                  <table class="form-class">
+                    <tr>
+                      <td>
+                        <label for="cusName"> Your Name </label>
+                      </td>
+                      <td>
+                        <input type="text" name="cusName" id="cusName">
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <label for="cusName"> Your Contact Number </label>
+                      </td>
+                      <td>
+                        <input type="text" name="contact_no" id="contact_no" onkeypress="return onlyNumberKey(event)" >
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <label for="cusName"> Your Email Address </label>
+                      </td>
+                      <td>
+                        <input type="email" name="email" id="email">
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <label for="cusName"> Delivery Address </label>
+                      </td>
+                      <td>
+                        <input type="text" name="address" id="address">
+                      </td>
+                    </tr>
+                    <input type="hidden" name="order_total" id="order_total">
+                  </table>
+                  
+                  <button class="btn" onclick="deleteAll();"> Cancel Order </button>
+
+                  <input type="submit" class="btn" onclick="passValues()" value="Submit">
+
+                </center>
+              </form>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <table>
+        <tr>
+          <td style="vertical-align:middle"><h2>The Garden Indian Restaurant</h2></td>
+          <td>
+            <h2><u>Contact Us</u></h2>
+            <br/>
+            Chadstone Shopping Centre<br>
+            1341 Dandenong Rd., Malvern East Vic., 3148<br>
+            Phone: (03) 9568 1486<br><br>
+                
+            <a class="footer__btn" href="thegardenrest@web.com">Email Us</a>
+          </td>
+          <td>
+            <h2><u>We are Accepting</u></h2>
+            <br>
+            <img style="height: 50px;" src="../Restaurant/images/visa.png" alt="Visa"/>
+            <img style="height: 50px;" src="../Restaurant/images/master.png" alt="Master"/>
+            <img style="height: 50px;" src="../Restaurant/images/ae.png" alt="American Express"/> 
+          </td>
+          <td>
+            <h2><u>Follow Us On</u></h2>
+            <br>
+            <a href="https://www.facebook.com/"></i>Facebook</a> <br>
+            <a href="https://twitter.com/"></i>Twitter</a> <br>
+            <a href="https://www.whatsapp.com/"></i>Whats App</a>
+          </td>
+        </tr>
+      </table>
+      
+    </footer>
+    
+  </body>
+</html>

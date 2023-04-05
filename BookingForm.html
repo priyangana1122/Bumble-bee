@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../Restaurant/css/footerstyle.css">
+    <link rel="stylesheet" href="../Restaurant/css/headerstyle.css">
+
+    <!-- JS Files -->
+    <script src="../Restaurant/js/main.js"> </script>
+    
+    <script>
+
+      function loadAll(){
+        if(localStorage.getItem('cusName') != ''){
+          document.getElementById("cusName").value = localStorage.getItem('cusName');
+        }
+
+        if(localStorage.getItem('bookType') != ''){
+          document.getElementById("bookType").value = localStorage.getItem('bookType');
+        }
+
+        if(localStorage.getItem('contact_no') != ''){
+          document.getElementById("contact_no").value = localStorage.getItem('contact_no');
+        }
+
+        if(localStorage.getItem('email') != ''){
+          document.getElementById("email").value = localStorage.getItem('email');
+        }
+
+        if(localStorage.getItem('date') != ''){
+          document.getElementById("date").value = localStorage.getItem('date');
+        }
+
+        if(localStorage.getItem('time') != ''){
+          document.getElementById("time").value = localStorage.getItem('time');
+        }
+      }
+
+      function passValues() {
+        var cusName = document.getElementById("cusName").value;
+        var bookType = document.getElementById("bookType").value;
+        var contact_no = document.getElementById("contact_no").value;
+        var email = document.getElementById("email").value;
+        var date = document.getElementById("date").value;
+        var time = document.getElementById("time").value;
+
+        localStorage.setItem('cusName', cusName);
+        localStorage.setItem('bookType', bookType);
+        localStorage.setItem('contact_no', contact_no);
+        localStorage.setItem('email', email);
+        localStorage.setItem('date', date);
+        localStorage.setItem('time', time);
+
+        return false;
+      }
+    </script>
+    <style>
+      .left-side {
+        transition: 10s;
+
+        animation: animate 20s infinite ease-in-out;
+      }
+
+      @keyframes animate{
+        0%{
+          background-image: url('images/TheGarden1.png');
+        }
+        20%{
+          background-image: url('images/TheGarden2.png');
+        }
+        40%{
+          background-image: url('images/TheGarden3.png');
+        }
+        60%{
+          background-image: url('images/TheGarden4.png');
+        }
+        80%{
+          background-image: url('images/TheGarden5.png');
+        }
+        100%{
+          background-image: url('images/TheGarden5.png');
+        }
+
+      }
+
+    </style>
+    <title>Garden Indian Restaurant</title>
+  </head>
+  <body onload="loadAll();">
+
+    <div class="pc-version">
+      <nav class="navbar">
+        <!-- LOGO -->
+        <div class="pc-header" style="width:40%; padding:0px 20px;">
+          <h1>The Garden Indian Restaurant</h1>
+        </div>
+        <!-- NAVIGATION MENU -->
+        <ul class="nav-links" style="width:60%;">
+            <!-- NAVIGATION MENUS -->
+            <table>
+              <colgroup>
+                <col width="auto">
+                <col width="auto">
+                <col width="auto">
+                <col width="auto">
+                <col width="auto">
+                <col width="auto">
+              </colgroup>
+              <tr>
+                <td> <a href="../Restaurant/Home.html">Home </a> </td>
+                <td> <a href="../Restaurant/About.html">About </a> </td>
+                <td> <a href="../Restaurant/LunchMenu.html">Lunch Menu </a> </td>
+                <td> <a href="../Restaurant/DinnerMenu.html">Dinner Menu </a> </td>
+                <td> <a href="../Restaurant/TakeAwayMenu.html">Take Away Menu </a> </td>
+                <td style="border-right: 0px;"> <a href="../Restaurant/Bookings.html">Bookings </a> </td>
+              </tr>
+            </table>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="mobile-version">
+      <div class="menu-container">
+        <input type="checkbox" id="openmenu" class="men-check">
+        <div class="menu-icon" style="z-index: 3;">
+          <label for="openmenu" id="hamburger-label">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>    
+        </div>
+      
+        <div class="menu-pane" style="z-index: 2;">
+          <nav>
+            <ul class="menu-links">
+              <li><a href="../Restaurant/Home.html">Home</a></li>
+              <li><a href="../Restaurant/About.html">About</a></li>
+              <li><a href="../Restaurant/LunchMenu.html">Lunch Menu</a></li>
+              <li><a href="../Restaurant/DinnerMenu.html">Dinner Menu</a></li>
+              <li><a href="../Restaurant/TakeAwayMenu.html">Take Away Menu</a></li>
+              <li><a href="../Restaurant/Bookings.html">Bookings</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="content scroll-lock-page">
+      <div class="left-side">
+        <!-- <img src="images/home-image.jpg" width="100%"> -->
+      </div>
+  
+      <div class="right-side right-form" style="background-color: #241d1d;">
+        <h1 align="center">
+          Online Booking Form
+        </h1>
+
+        <div class="content-text-home">
+
+          <form action="BookedPrint.html">
+            <div class="form">
+              <table style="width: 100%;">
+                <tr style="height:50px;">
+                  <td>Booking Type</td>
+                  <td>
+                    <select name="bookType" id="bookType">
+                      <option value="Table booking for Lunch Or Dinner">Table booking for Lunch Or Dinner</option>
+                      <option value="Conference or Group Booking">Conference or Group Booking</option>
+                    </select>
+                  </td>
+                </tr>
+    
+                <tr>
+                  <td>Customer Name</td>
+                  <td>
+                    <input type="text" value="" name="cusName" id="cusName">
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td>Contact No</td>
+                  <td>
+                    <!-- Let user to insert only numbers. As this can be used foreign customers, letting customer to
+                    insert any number of digits -->
+                    <input type="text" name="contact_no" id="contact_no" onkeypress="return onlyNumberKey(event)" >
+                  </td>
+                </tr>
+    
+                <tr>
+                  <td>Email Address</td>
+                  <td>
+                    <input type="email" name="email" id="email">
+                  </td>
+                </tr>
+    
+                <tr>
+                  <td>Date</td>
+                  <td>
+                    <input type="date" name="date" id="date">
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td>Time</td>
+                  <td>
+                    <input type="time" name="time" id="time">
+                  </td>
+                </tr>
+
+                <tr>
+                  <td colspan="2">
+                    <input type="submit" class="passSubmit" onclick="passValues()" value="Submit">
+                  </td>
+                </tr>
+    
+              </table>
+            </div>
+          </form>
+          
+        </div>
+        
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <table>
+        <tr>
+          <td style="vertical-align:middle"><h2>The Garden Indian Restaurant</h2></td>
+          <td>
+            <h2><u>Contact Us</u></h2>
+            <br/>
+            Chadstone Shopping Centre<br>
+            1341 Dandenong Rd., Malvern East Vic., 3148<br>
+            Phone: (03) 9568 1486<br><br>
+                
+            <a class="footer__btn" href="thegardenrest@web.com">Email Us</a>
+          </td>
+          <td>
+            <h2><u>We are Accepting</u></h2>
+            <br>
+            <img style="height: 50px;" src="../Restaurant/images/visa.png" alt="Visa"/>
+            <img style="height: 50px;" src="../Restaurant/images/master.png" alt="Master"/>
+            <img style="height: 50px;" src="../Restaurant/images/ae.png" alt="American Express"/> 
+          </td>
+          <td>
+            <h2><u>Follow Us On</u></h2>
+            <br>
+            <a href="https://www.facebook.com/"></i>Facebook</a> <br>
+            <a href="https://twitter.com/"></i>Twitter</a> <br>
+            <a href="https://www.whatsapp.com/"></i>Whats App</a>
+          </td>
+        </tr>
+      </table>
+      
+    </footer>
+    
+  </body>
+</html>
