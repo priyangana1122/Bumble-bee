@@ -1,0 +1,412 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+}
+
+h1 {
+    font-size: 70px;
+    margin: 18px;
+    font-family: Impact, fantasy;
+}
+
+.right-side h1{
+    font-size: 50px;
+}
+
+
+
+.content-text-home {
+    font-size: 18px;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.content-text-home p {
+    margin-top: 35px;
+    text-align: justify;
+}
+
+.content-text-home h3 {
+    text-decoration: underline;
+}
+
+.content {
+    display: flex;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.left-side {
+    width: 50%;
+    background-size: cover;
+}
+
+.scroll-lock-page .right-side {
+    width: 50%;
+    padding: 10px;
+    color: white;
+    /* overflow-y: scroll; */
+    /* As this is an indian restaurant, wanted to make background as indian flag.
+    But it is not going to work nicely for mobile users. So removed it */
+    /* background-image: linear-gradient(#FF9933 33.33%, white 33.33%, white 66.66%, #138808 66.66%) */
+}
+
+.home-right-side {
+    width: 50%;
+    padding: 10px;
+    color: white;
+}
+
+/* Lunch-Menu */
+.menu-page .menu {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: 20px 40px;
+}
+
+.menu-page .heading {
+    background-color: rgb(250, 233, 3);
+    color: #000000;
+    /* margin-bottom: 30px; */
+    padding: 30px 0 30px 0;
+    grid-column: 1/-1;
+    text-align: center;
+}
+
+.menu-page .heading>h1 {
+    font-weight: 400;
+    font-size: 40px;
+    letter-spacing: 10px;
+    margin-bottom: 10px;
+}
+
+.menu-page .sub-heading {
+    background-color: #008080;
+    color: #ffffff;
+    padding: 10px 0 10px 0;
+    grid-column: 1/-1;
+    text-align: center;
+}
+
+.menu-page .sub-heading>h3 {
+    font-weight: 600;
+    font-size: 25px;
+    letter-spacing: 5px;
+}
+
+.menu-page .sub-heading>p {
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.menu-page .food-items {
+    display: grid;
+    position: relative;
+    grid-template-rows: auto 1fr;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin: 0 20px;
+}
+
+.menu-page .food-items img {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 15px 15px 0 0;
+}
+
+.menu-page .details {
+    padding: 20px 10px;
+    display: grid;
+    grid-template-rows: auto 1fr 10px;
+    grid-row-gap: 15px;
+}
+
+.menu-page .details-sub {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.menu-page .other_details {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 10px;
+}
+
+.menu-page .details-sub>h5 {
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0px;
+}
+
+.menu-page .details>p {
+    color: #6f6f6f;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.menu-page .price {
+    text-align: right;
+}
+
+.book-button {
+    background: rgb(0, 0, 0);
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.letters {
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: rgb(53, 52, 52);
+    color: white;
+    transform: translateY(-6px);
+}
+
+.letters:hover {
+    background: rgb(53, 52, 52);
+    color: rgb(250, 233, 3);
+}
+
+.book-button:active .letters {
+    transform: translateY(-2px);
+}
+
+/* Booking Form */
+
+.scroll-lock-page .right-side {
+    width: 50%;
+    padding: 10px;
+    color: white;
+}
+
+.form {
+    width: 90%;
+    margin: auto;
+    border: 1px solid white;
+    padding: 10px;
+}
+
+input {
+    height: 30px;
+    margin: 10px 0px;
+}
+
+select {
+    height: 30px;
+}
+
+.passSubmit {
+    padding: 5px;
+    cursor: pointer;
+
+    height: 35px;
+
+    background: black;
+    color: white;
+    font-size: 20px;
+
+}
+
+.btn {
+    padding: 5px;
+    cursor: pointer;
+
+    background: black;
+    color: white;
+    font-size: 13px;
+
+}
+
+.passSubmit:hover {
+    background: white;
+    color: black;
+}
+
+.form-class {
+    width: 80%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+/* Media Queries for Home Page*/
+
+@media only screen and (max-width: 889px) {
+    .home-right-side {
+        overflow-y: scroll !important;
+    }
+}
+
+@media only screen and (max-width: 629px) {
+
+    .home-page {
+        display: block;
+        overflow-y: scroll;
+    }
+
+    .home-page .right-side {
+        width: 100%;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        padding: 1px 0px;
+        overflow-y: unset;
+
+    }
+
+    .home-right-side {
+        overflow-y: unset !important;
+    }
+
+    .home-page .left-side {
+        width: 100%;
+        height: 33%;
+    }
+
+    .home-page .right-side h1 {
+        font-size: 60px;
+
+    }
+
+    .home-page .right-side .content-text-home {
+        font-size: 16px;
+    }
+
+    .home-page .right-side .content-text-home p {
+        padding: 0px 10px;
+    }
+}
+
+@media only screen and (min-width: 630px) {
+    .home-page .right-side h1 {
+        font-size: 60px;
+    }
+
+    .home-page .right-side .content-text-home {
+        font-size: 16px;
+    }
+
+}
+
+@media only screen and (min-width: 730px) {
+    .home-page .right-side h1 {
+        font-size: 70px;
+    }
+
+    .home-page .right-side .content-text-home {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (min-width: 929px) {
+    .home-page .right-side {
+        overflow-y: auto;
+        width: 50%;
+    }
+}
+
+/* Media Queries for About Page*/
+
+@media only screen and (max-width: 740px) {
+
+    .scroll-lock-page {
+        display: block;
+        overflow-y: scroll;
+    }
+
+    /* Needed to remove scroll. But only for that, doing all the scroll-lock-page class things again on this is useless. */
+    .non-scroll {
+        overflow-y: unset !important;
+    }
+
+    .scroll-lock-page .right-side {
+        width: 100%;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        padding: 1px 0px;
+        overflow-y: auto !important;
+        height: auto !important;
+        overflow-y: unset;
+    }
+
+    .scroll-lock-page .left-side {
+        width: 100%;
+        height: 33%;
+    }
+
+    .scroll-lock-page .right-side h1 {
+        font-size: 60px;
+
+    }
+
+    .scroll-lock-page .right-side .content-text-home {
+        font-size: 16px;
+    }
+
+    .scroll-lock-page .right-side .content-text-home p {
+        padding: 0px 10px;
+    }
+}
+
+@media only screen and (min-width: 741px) {
+    .scroll-lock-page .left-side {
+        width: 40%;
+    }
+
+    .scroll-lock-page .right-side {
+        width: 60%;
+    }
+
+    .scroll-lock-page .right-side h1 {
+        font-size: 50px;
+    }
+
+    .scroll-lock-page .right-side .content-text-home {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 875px) {
+    .scroll-lock-page .right-side h1 {
+        font-size: 50px;
+    }
+
+    .scroll-lock-page .right-side .content-text-home {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 966px) {
+    .scroll-lock-page .right-side h1 {
+        font-size: 60px;
+    }
+
+    .scroll-lock-page .right-side .content-text-home {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 1045px) {
+    .scroll-lock-page .right-side h1 {
+        font-size: 70px;
+    }
+
+    .scroll-lock-page .right-side .content-text-home {
+        font-size: 18px;
+    }
+}

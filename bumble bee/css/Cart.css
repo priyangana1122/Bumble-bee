@@ -1,0 +1,34 @@
+.cart-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.cart-container h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+#cart {
+  margin-top: 10px;
+}
+
+#cart ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#cart li {
+  margin-bottom: 5px;
+}
+
+#cart li button {
+  margin-left: 10px;
+}
+
+#cart p {
+  text-align: right;
+  margin-top: 10px;
+  font-weight: bold;
+}
