@@ -39,8 +39,7 @@
             <td> <a href="../bumble bee/Electronics.php">Electronics</a> </td>
             <td> <a href="../bumble bee/Furniture.php">Furnitures</a> </td>
             <td> <a href="../bumble bee/Login.php">Login</a> </td>
-            <td style="border-right: 0px;"> <a href="../bumble bee/Testingcart.php">Cart</a> </td>
-          </tr>
+            <td style="border-right: 0px;"> <a href="../bumble bee/Cart.php">Cart</a> </td>
         </table>
       </ul>
     </nav>
@@ -84,793 +83,235 @@
         <h3>&mdash; Sofa &mdash; </h3>
       </div>
 
-      <div class="food-items">
-        <img src="../bumble bee/images/Furniture/fu2.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Damro Sofa CL1</h5>
-            <h5 class="price"> LKR 80 000 </h5>
-          </div>
-          <p>Navy and Blue color high quality sofa</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="../bumble bee/images/Furniture/fu4.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Damro Sofa CV 100</h5>
-            <h5 class="price"> LKR 100 000 </h5>
-          </div>
-          <p>Damro sofa with cushioned stool</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="../bumble bee/images/Furniture/fu8.jfif">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Nilkamal Office SOfa</h5>
-            <h5 class="price"> LKR 200 000 </h5>
-          </div>
-          <p>Office space sofa set with cushioned stool</p>
-        </div>
-      </div>
+      <style>
+        .product-grid {
+          display: flex;
+          flex-wrap: wrap;
+        }
 
-      <div class="food-items">
-        <img src="images/chicken-tikka.png">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Chicken Tikka</h5>
-            <h5 class="price"> $12 </h5>
-          </div>
-          <p>Boneless marinated chicken grilled in tandoor</p>
-        </div>
-      </div>
+        .product-row {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          margin-bottom: 20px;
+        }
 
-      <div class="food-items">
-        <img src="images/Seekh-kebab.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Seekh Kebab</h5>
-            <h5 class="price"> $12 </h5>
-          </div>
-          <p>Spiced and skewed lamb mince cooked in tandoor</p>
-        </div>
-      </div>
+        .product {
+          flex-basis: calc(33.33% - 20px);
+          box-sizing: border-box;
+          padding: 10px;
+          text-align: center;
+        }
 
-      <div class="sub-heading">
-        <h3>&mdash; Chicken &mdash; </h3>
-      </div>
+        .product img {
+          display: block;
+          margin: 0 auto;
+          max-width: 100%;
+          height: auto;
+          margin-bottom: 10px;
+        }
+      </style>
+      <?php
+      // Connect to the database
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "bumblebee";
 
-      <div class="food-items">
-        <img src="images/chicken-tikka.png">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Chicken Tikka Masala (medium)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Unique combination of spices cooked with onion, capsicum and tomato</p>
-        </div>
-      </div>
+      $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-      <div class="food-items">
-        <img src="images/chicken-balti.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Chicken Balti (medium)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Boneless chicken cooked in medium spiced sauce with onion, capsicum and tomato</p>
-        </div>
-      </div>
+      // Check connection
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
 
-      <div class="food-items">
-        <img src="images/chicken-korma.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Chicken Korma (mild)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Chicken cooked in creamy cashew nut gravy</p>
-        </div>
-      </div>
+      // Query the database to retrieve products
+      $sql = "SELECT * FROM product WHERE category='SF'";
+      $result = mysqli_query($conn, $sql);
 
-      <div class="food-items">
-        <img src="images/kadai-chicken.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Kadai Chicken (medium)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Chicken cooked in kadai gravy</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/chicken-vindaloo.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Chicken Vindaloo (HOT)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Spicy curry prepared in goan style</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/mysore-chilli.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Mysore Chicken (HOT)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Chicken cooked with fresh chillies in coconut creamy sauce</p>
-        </div>
-      </div>
+
+      // Display the products on the webpage
+      echo "<div class='product-grid'>";
+      $count = 0;
+      while ($row = mysqli_fetch_assoc($result)) {
+        if ($count % 3 == 0) {
+          echo "<div class='product-row'>";
+        }
+        echo "<div class='product'>";
+        echo "<img src='" . $row["image"] . "' alt='" . $row["name"] . "' width='200' height='200'><br>";
+        echo "<h3>" . $row["name"] . "</h3>";
+        echo "<p>" . $row["description"] . "</p>";
+        echo "<p><strong>Price:</strong> LKR " . $row["price"] . "</p>";
+        echo "<form action='' method='post'><input type='hidden' name='product_name' value='" . $row["name"] . "'><input type='number' name='quantity' value='1' min='1'><input type='hidden' name='price' value='" . $row["price"] . "'><input type='submit' value='Add to Cart'></form>";
+
+        echo "</div>";
+        $count++;
+        if ($count % 3 == 0) {
+          echo "</div>";
+        }
+      }
+      if ($count % 3 != 0) {
+        echo "</div>";
+      }
+      echo "</div>";
+
+
+
+      // Close the database connection
+      mysqli_close($conn);
+      ?>
+
+
+
 
       <div class="sub-heading">
-        <h3>&mdash; Lamb &mdash; </h3>
+        <h3>&mdash; Tables &mdash; </h3>
       </div>
+      <style>
+        .product-grid {
+          display: flex;
+          flex-wrap: wrap;
+        }
 
-      <div class="food-items">
-        <img src="images/Lamb-Rogan-Josh.JPG">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Lamb Rogan Josh (medium)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Lamb cooked in traditional north Indian style</p>
-        </div>
-      </div>
+        .product-row {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          margin-bottom: 20px;
+        }
 
-      <div class="food-items">
-        <img src="images/lamb-korma.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Lamb Korma (mild)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Blend of creamy cashew nut gravy cooked with lamb</p>
-        </div>
-      </div>
+        .product {
+          flex-basis: calc(33.33% - 20px);
+          box-sizing: border-box;
+          padding: 10px;
+          text-align: center;
+        }
 
-      <div class="food-items">
-        <img src="images/lamb-madras.jfif">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Lamb Madras (medium)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Creamy coconut based delicacy cooked to perfection</p>
-        </div>
-      </div>
+        .product img {
+          display: block;
+          margin: 0 auto;
+          max-width: 100%;
+          height: auto;
+          margin-bottom: 10px;
+        }
+      </style>
 
-      <div class="food-items">
-        <img src="images/lamb-madras.jfif">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Saag Lamb (mild to medium)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Diced lamb cooked with spinach sauce</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/lamb-masala.png">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Lamb Masala (medium)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Lamb cooked in onion, tomato masala gravy</p>
-        </div>
-      </div>
+      <?php
+      // Connect to the database
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "bumblebee";
 
-      <div class="food-items">
-        <img src="images/lamb-vindaloo.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Lamb Vindaloo (HOT)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Spicy lamb curry prepared in Goan style</p>
-        </div>
-      </div>
+      $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-      <div class="sub-heading">
-        <h3>&mdash; Beef &mdash; </h3>
-      </div>
+      // Check connection
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
 
-      <div class="food-items">
-        <img src="images/beef-rogan-josh.jpeg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Beef Rogan Josh (medium)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Diced beef cooked in north Indian style</p>
-        </div>
-      </div>
+      // Query the database to retrieve products
+      $sql = "SELECT * FROM product WHERE category='TB'";
+      $result = mysqli_query($conn, $sql);
 
-      <div class="food-items">
-        <img src="images/beef-masala.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Beef Masala (medium)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Meat cooked with onion, tomato, capsicum in masala gravy</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/beef-krma-curry.png">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Beef Korma (mild)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Diced beef cooked in creamy cashew nut gravy</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/beef-madras.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Beef Madras (mild to medium)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Combination of creamy coconut sauce cooked to perfection</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/beef-vindaloo-hot.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Beef Vindaloo (HOT)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Spicy Goan style curry cooked to perfection</p>
-        </div>
-      </div>
+      // Display the products on the webpage
+      echo "<div class='product-grid'>";
+      $count = 0;
+      while ($row = mysqli_fetch_assoc($result)) {
+        if ($count % 3 == 0) {
+          echo "<div class='product-row'>";
+        }
+        echo "<div class='product'>";
+        echo "<img src='" . $row["image"] . "' alt='" . $row["name"] . "' width='200' height='200'><br>";
+        echo "<h3>" . $row["name"] . "</h3>";
+        echo "<p>" . $row["description"] . "</p>";
+        echo "<p><strong>Price:</strong> LKR " . $row["price"] . "</p>";
+        echo "<form action='' method='post'><input type='hidden' name='product_name' value='" . $row["name"] . "'><input type='number' name='quantity' value='1' min='1'><input type='hidden' name='price' value='" . $row["price"] . "'><input type='submit' value='Add to Cart'></form>";
 
-      <div class="food-items">
-        <img src="images/Black-Pepper-Beef.webp">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Beef Pepper Fry (HOT)</h5>
-            <h5 class="price"> $20 </h5>
-          </div>
-          <p>Spicy beef curry cooked with black pepper</p>
-        </div>
-      </div>
+        echo "</div>";
+        $count++;
+        if ($count % 3 == 0) {
+          echo "</div>";
+        }
+      }
+      if ($count % 3 != 0) {
+        echo "</div>";
+      }
+      echo "</div>";
+
+
+
+      // Close the database connection
+      mysqli_close($conn);
+      ?>
+
 
       <div class="sub-heading">
-        <h3>&mdash; Seafood &mdash; </h3>
+        <h3>&mdash; Chairs &mdash; </h3>
       </div>
 
-      <div class="food-items">
-        <img src="images/prawn-malabari.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Prawn Malabari (mild)</h5>
-            <h5 class="price"> $22 </h5>
-          </div>
-          <p>Prawn cooked with onion, capsicum in coconut gravy</p>
-        </div>
-      </div>
+      <?php
+      // Connect to the database
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "bumblebee";
 
-      <div class="food-items">
-        <img src="images/prawn-fish-masala.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Prawn / Fish Masala (medium)</h5>
-            <h5 class="price"> $22 </h5>
-          </div>
-          <p>Combination of spices cooked with onion, tomato and capsicum</p>
-        </div>
-      </div>
+      $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-      <div class="food-items">
-        <img src="images/prawn-vindaloo.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Prawn Vindaloo (HOT)</h5>
-            <h5 class="price"> $22 </h5>
-          </div>
-          <p>Spicy curry cooked in Goan style</p>
-        </div>
-      </div>
+      // Check connection
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
 
-      <div class="food-items">
-        <img src="images/butter-prawn.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Butter Prawn (mild)</h5>
-            <h5 class="price"> $22 </h5>
-          </div>
-          <p>Blend of creamy tomato gravy with prawn</p>
-        </div>
-      </div>
+      // Query the database to retrieve products
+      $sql = "SELECT * FROM product WHERE category='CH'";
+      $result = mysqli_query($conn, $sql);
 
-      <div class="food-items">
-        <img src="images/goan-fishc-urry.JPG">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Goan Fish Curry (mild)</h5>
-            <h5 class="price"> $22 </h5>
-          </div>
-          <p>Fish cooked with creamy coconut gravy</p>
-        </div>
-      </div>
 
-      <div class="sub-heading">
-        <h3>&mdash; Vegetarian &mdash; </h3>
-      </div>
 
-      <div class="food-items">
-        <img src="images/butter-paneer.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Butter Paneer (mild)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Indian cottage cheese cooked in creamy tomato gravy</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/Paneer-Tikka-Masala.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Paneer Tikka Masala (medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Cottage cheese with onion, tomato, capsicum and spiced gravy</p>
-        </div>
-      </div>
+      // Display the products on the webpage
+      echo "<div class='product-grid'>";
+      $count = 0;
+      while ($row = mysqli_fetch_assoc($result)) {
+        if ($count % 3 == 0) {
+          echo "<div class='product-row'>";
+        }
+        echo "<div class='product'>";
+        echo "<img src='" . $row["image"] . "' alt='" . $row["name"] . "' width='200' height='200'><br>";
+        echo "<h3>" . $row["name"] . "</h3>";
+        echo "<p>" . $row["description"] . "</p>";
+        echo "<p><strong>Price:</strong> LKR " . $row["price"] . "</p>";
+        echo "<form action='' method='post'><input type='hidden' name='product_name' value='" . $row["name"] . "'><input type='number' name='quantity' value='1' min='1'><input type='hidden' name='price' value='" . $row["price"] . "'><input type='submit' value='Add to Cart'></form>";
 
-      <div class="food-items">
-        <img src="images/kadar-paneer.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Kadai Paneer (medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Cottage cheese cooked in kadai Gravy</p>
-        </div>
-      </div>
+        echo "</div>";
+        $count++;
+        if ($count % 3 == 0) {
+          echo "</div>";
+        }
+      }
+      if ($count % 3 != 0) {
+        echo "</div>";
+      }
+      echo "</div>";
 
-      <div class="food-items">
-        <img src="images/Paneer-Bhurji.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Paneer Bhurji (medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Gratted Cottage cheese cooked with onion, capsicum in tomato sauce</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/palak-paneer.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Palak Paneer (mild to medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Cottage cheese cooked in mild spiced spinach sauce</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/achari-paneer.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Achari Paneer (medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Cottage cheese cooked in pickle sauce</p>
-        </div>
-      </div>
+      // Close the database connection
+      mysqli_close($conn);
+      ?>
 
-      <div class="food-items">
-        <img src="images/Vegetable-Korma.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Vegetable Korma (mild)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Mix vegetable cooked in creamy cashew nut gravy</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/fresh-vegetable.jfif">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Mix vegetable (medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Fresh vegetable cooked in medium spiced gravy</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/vegetable-madras.png">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Vegetable Madras (mild to medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Creamy coconut based delicacy cooked to perfection</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/vegetable-madras.png">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Vegetable Jalfrezi (medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Fresh vegetable cooked in tomato gravy</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/Palak-Chole.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Chole Masala/Chole Palak (medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Chickpeas cooked in onion tomato gravy or spinach sauce</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/malai-kofta.webp">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Malai Kofta (mild)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Mashed potato, dry fruit and cottage cheese dumpling cooked in rich cashew nut gravy</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/Aloo-Matar.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Aloo Gobi / Aloo Mutter (medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Potatoes cooked with cauliflower or green peas in spiced sauce</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/Saag-aloo.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Saag Aloo (mild)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Potatoes cooked in mild spiced spinach sauce</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/bombay-potatoes.jfif">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Bombay Potatoes dry (mild)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Potatoes tempered with cumin seed, curry leaves and coriander</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/dal-tadka.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Dal Tadka (mild to medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Yellow split lentil tempered with garlic, tomato and onion</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/Dal-makhani.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Dal Makhani (medium)</h5>
-            <h5 class="price"> $17 </h5>
-          </div>
-          <p>Black lentil & kidney beans cooked with tomato, cream and butter</p>
-        </div>
-      </div>
-
-      <div class="sub-heading">
-        <h3>&mdash; Tandoori Bread &mdash; </h3>
-      </div>
-
-      <div class="food-items">
-        <img src="images/Naan.webp">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Plain Naan</h5>
-            <h5 class="price"> $3 </h5>
-          </div>
-          <p>Leavened refined flour bread</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/garlic-naan.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Garlic Naan</h5>
-            <h5 class="price"> $4 </h5>
-          </div>
-          <p>Garlic flavoured Naan</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/cheese-naan.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Cheese Naan</h5>
-            <h5 class="price"> $5 </h5>
-          </div>
-          <p>Naan stuffed with cheese</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/cheese-garlic-naan.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Cheese & Garlic Naan</h5>
-            <h5 class="price"> $6 </h5>
-          </div>
-          <p>Naan stuffed with cheese and smeared with garlic</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/peshawari-naan.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Peshawari Naan</h5>
-            <h5 class="price"> $5 </h5>
-          </div>
-          <p>Naan stuffed with Nuts and Dry fruits</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/Aloo-naan.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Aloo Naan</h5>
-            <h5 class="price"> $5 </h5>
-          </div>
-          <p>Naan stuffed with spiced mashed potatoes</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/kheema-naan.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Kheema Naan / Paneer Naan</h5>
-            <h5 class="price"> $5 </h5>
-          </div>
-          <p>Naan stuffed with spiced lamb mince or spiced cottage cheese</p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/Chilli-Naan.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Chilli Naan</h5>
-            <h5 class="price"> $4 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/spinach-naan.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Spinach Naan</h5>
-            <h5 class="price"> $4 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/cheese-chili-naan.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Cheese & Chilli Naan</h5>
-            <h5 class="price"> $5 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/cheese-naan.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Cheese & Spinach Naan</h5>
-            <h5 class="price"> $5 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/Roti.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Roti</h5>
-            <h5 class="price"> $3 </h5>
-          </div>
-          <p> Wholemeal bread </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/paratha.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Paratha</h5>
-            <h5 class="price"> $3 </h5>
-          </div>
-          <p> Flaky wholemeal bread </p>
-        </div>
-      </div>
-
-      <div class="sub-heading">
-        <h3>&mdash; Rice &mdash; </h3>
-      </div>
-
-      <div class="food-items">
-        <img src="images/steamed-rice.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Steamed Rice</h5>
-            <h5 class="price"> $3 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/saffron-rice.webp">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Saffron Rice</h5>
-            <h5 class="price"> $6 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/coconut-rice.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Coconut Rice</h5>
-            <h5 class="price"> $6 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/jeera-rice.webp">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Jeera Peas Rice</h5>
-            <h5 class="price"> $6 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/biriyani-rice.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Biryani Rice</h5>
-            <h5 class="price"> $6 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="sub-heading">
-        <h3>&mdash; Sides &mdash; </h3>
-      </div>
-
-      <div class="food-items">
-        <img src="images/papadam.webp">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Papadams</h5>
-            <h5 class="price"> $3 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/cucumber-raita.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Cucumber Raita</h5>
-            <h5 class="price"> $3 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/mango-chutney.webp">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Sweet Mango Chutney</h5>
-            <h5 class="price"> $3 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/Mint-Sause.webp">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Mint Sauce</h5>
-            <h5 class="price"> $3 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="food-items">
-        <img src="images/pickles.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Pickles</h5>
-            <h5 class="price"> $3 </h5>
-          </div>
-          <p> </p>
-        </div>
-      </div>
-
-      <div class="sub-heading">
-        <p>Phone: (03) 9568 1486</p>
-        <p>Licenced and BYO Wine only</p>
-        <p>All curries Gluten Free & Halal</p>
-        <p>Conferences and group bookings accepted</p>
-        <p>All prices include GST. Prices are subject to change without notice</p>
-      </div>
 
     </div>
 

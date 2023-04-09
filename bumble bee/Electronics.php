@@ -39,7 +39,7 @@
             <td> <a href="../bumble bee/Electronics.php">Electronics</a> </td>
             <td> <a href="../bumble bee/Furniture.php">Furnitures</a> </td>
             <td> <a href="../bumble bee/Login.php">Login</a> </td>
-            <td style="border-right: 0px;"> <a href="../bumble bee/Testingcart.php">Cart</a> </td>
+            <td style="border-right: 0px;"> <a href="../bumble bee/Cart.php">Cart</a> </td>
           </tr>
         </table>
       </ul>
@@ -82,213 +82,355 @@
         <h3>&mdash; Refrigerators &mdash; </h3>
       </div>
 
-      <div class="food-items">
-        <img src="../bumble bee/images/Fridge/fr1.jfif">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Two Door Fridge</h5>
-          </div>
-          <p>Fridge with Separate coolers 50L</p>
-          <p>LKR 100 000</p>
-        </div>
-      </div>
+      <style>
+        .product-grid {
+          display: flex;
+          flex-wrap: wrap;
+        }
 
-      <div class="food-items">
-        <img src="../bumble bee/images/Fridge/fr2.jfif">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Abans Two Doors Fridge
-            </h5>
-          </div>
-          <p>Two Doors with Ice cream machine function</p>
-          <p>LKR 200 000</p>
-        </div>
-      </div>
+        .product-row {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          margin-bottom: 20px;
+        }
 
-      <div class="food-items">
-        <img src="../bumble bee/images/Fridge/fr3.jfif">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Singer Two Doors Fridge</h5>
-          </div>
-          <p>Singer Super cool electricty efficient eco friendly fridge</p>
-          <p>LKR 150 000</p>
-        </div>
-      </div>
+        .product {
+          flex-basis: calc(33.33% - 20px);
+          box-sizing: border-box;
+          padding: 10px;
+          text-align: center;
+        }
 
-      <div class="sub-heading">
-        <h3>&mdash; TV &mdash; </h3>
-      </div>
+        .product img {
+          display: block;
+          margin: 0 auto;
+          max-width: 100%;
+          height: auto;
+          margin-bottom: 10px;
+        }
+      </style>
 
-      <div class="food-items">
-        <img src="images/butter-chicken.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Butter Chicken (mild)</h5>
-          </div>
-          <p>Bone less chicken grilled in tandoor and finished with creamy tomato gravy</p>
-        </div>
-      </div>
+      <?php
+      // Connect to the database
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "bumblebee";
 
-      <div class="food-items">
-        <img src="images/chicken-balti.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Chicken Balti (medium)</h5>
-          </div>
-          <p>Boneless chicken cooked in medium spiced sauce with onion, capsicum and tomato</p>
-        </div>
-      </div>
+      $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-      <div class="food-items">
-        <img src="images/Chicken-Madras.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Chicken Madras (mild to medium) </h5>
-          </div>
-          <p>Creamy coconut based delicacy cooked to perfection</p>
-        </div>
-      </div>
+      // Check connection
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
+
+      // Query the database to retrieve products
+      $sql = "SELECT * FROM product WHERE category='FR'";
+      $result = mysqli_query($conn, $sql);
 
 
 
-      <div class="food-items">
-        <img src="images/Lamb-Rogan-Josh.JPG">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Lamb Rogan Josh (medium)</h5>
-          </div>
-          <p>Lamb cooked in traditional north Indian style</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/lamb-korma.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Lamb Korma (mild)</h5>
-          </div>
-          <p>Blend of creamy cashew nut gravy cooked with lamb</p>
-        </div>
-      </div>
+      // Display the products on the webpage
+      echo "<div class='product-grid'>";
+      $count = 0;
+      while ($row = mysqli_fetch_assoc($result)) {
+        if ($count % 3 == 0) {
+          echo "<div class='product-row'>";
+        }
+        echo "<div class='product'>";
+        echo "<img src='" . $row["image"] . "' alt='" . $row["name"] . "' width='200' height='200'><br>";
+        echo "<h3>" . $row["name"] . "</h3>";
+        echo "<p>" . $row["description"] . "</p>";
+        echo "<p><strong>Price:</strong> LKR " . $row["price"] . "</p>";
+        echo "<form action='' method='post'><input type='hidden' name='product_name' value='" . $row["name"] . "'><input type='number' name='quantity' value='1' min='1'><input type='hidden' name='price' value='" . $row["price"] . "'><input type='submit' value='Add to Cart'></form>";
 
-      <div class="food-items">
-        <img src="images/lamb-madras.jfif">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Lamb Madras (medium)</h5>
-          </div>
-          <p>Creamy coconut based delicacy cooked to perfection</p>
-        </div>
-      </div>
+        echo "</div>";
+        $count++;
+        if ($count % 3 == 0) {
+          echo "</div>";
+        }
+      }
+      if ($count % 3 != 0) {
+        echo "</div>";
+      }
+      echo "</div>";
 
-      <div class="food-items">
-        <img src="images/lamb-masala.png">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Lamb Masala (medium)</h5>
-          </div>
-          <p>Lamb cooked in onion, tomato masala gravy</p>
-        </div>
-      </div>
 
-      <div class="food-items">
-        <img src="images/lamb-vindaloo.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Lamb Vindaloo (HOT)</h5>
-          </div>
-          <p>Spicy lamb curry prepared in Goan style</p>
-        </div>
-      </div>
+
+      // Close the database connection
+      mysqli_close($conn);
+      ?>
+
+
+
+
+
+
+
+
+
+
 
       <div class="sub-heading">
         <h3>&mdash; Washine Machines &mdash; </h3>
       </div>
 
-      <div class="food-items">
-        <img src="images/beef-madras.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Beef Madras (mild to medium)</h5>
-          </div>
-          <p>Combination of creamy coconut sauce cooked to perfection</p>
-        </div>
+      <style>
+        .product-grid {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .product-row {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .product {
+          flex-basis: calc(33.33% - 20px);
+          box-sizing: border-box;
+          padding: 10px;
+          text-align: center;
+        }
+
+        .product img {
+          display: block;
+          margin: 0 auto;
+          max-width: 100%;
+          height: auto;
+          margin-bottom: 10px;
+        }
+      </style>
+
+      <?php
+      // Connect to the database
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "bumblebee";
+
+      $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+      // Check connection
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
+
+      // Query the database to retrieve products
+      $sql = "SELECT * FROM product WHERE category='WM'";
+      $result = mysqli_query($conn, $sql);
+
+
+
+
+      // Display the products on the webpage
+      echo "<div class='product-grid'>";
+      $count = 0;
+      while ($row = mysqli_fetch_assoc($result)) {
+        if ($count % 3 == 0) {
+          echo "<div class='product-row'>";
+        }
+        echo "<div class='product'>";
+        echo "<img src='" . $row["image"] . "' alt='" . $row["name"] . "' width='200' height='200'><br>";
+        echo "<h3>" . $row["name"] . "</h3>";
+        echo "<p>" . $row["description"] . "</p>";
+        echo "<p><strong>Price:</strong> LKR " . $row["price"] . "</p>";
+        echo "<form action='' method='post'><input type='hidden' name='product_name' value='" . $row["name"] . "'><input type='number' name='quantity' value='1' min='1'><input type='hidden' name='price' value='" . $row["price"] . "'><input type='submit' value='Add to Cart'></form>";
+
+        echo "</div>";
+        $count++;
+        if ($count % 3 == 0) {
+          echo "</div>";
+        }
+      }
+      if ($count % 3 != 0) {
+        echo "</div>";
+      }
+      echo "</div>";
+
+
+
+      // Close the database connection
+      mysqli_close($conn);
+      ?>
+
+
+      <div class="sub-heading">
+        <h3>&mdash; Laptops &mdash; </h3>
       </div>
+      <style>
+        .product-grid {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .product-row {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .product {
+          flex-basis: calc(33.33% - 20px);
+          box-sizing: border-box;
+          padding: 10px;
+          text-align: center;
+        }
+
+        .product img {
+          display: block;
+          margin: 0 auto;
+          max-width: 100%;
+          height: auto;
+          margin-bottom: 10px;
+        }
+      </style>
+
+
+      <?php
+      // Connect to the database
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "bumblebee";
+
+      $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+      // Check connection
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
+
+      // Query the database to retrieve products
+      $sql = "SELECT * FROM product WHERE category='LP'";
+      $result = mysqli_query($conn, $sql);
+
+
+
+
+      // Display the products on the webpage
+      echo "<div class='product-grid'>";
+      $count = 0;
+      while ($row = mysqli_fetch_assoc($result)) {
+        if ($count % 3 == 0) {
+          echo "<div class='product-row'>";
+        }
+        echo "<div class='product'>";
+        echo "<img src='" . $row["image"] . "' alt='" . $row["name"] . "' width='200' height='200'><br>";
+        echo "<h3>" . $row["name"] . "</h3>";
+        echo "<p>" . $row["description"] . "</p>";
+        echo "<p><strong>Price:</strong> LKR " . $row["price"] . "</p>";
+        echo "<form action='' method='post'><input type='hidden' name='product_name' value='" . $row["name"] . "'><input type='number' name='quantity' value='1' min='1'><input type='hidden' name='price' value='" . $row["price"] . "'><input type='submit' value='Add to Cart'></form>";
+
+        echo "</div>";
+        $count++;
+        if ($count % 3 == 0) {
+          echo "</div>";
+        }
+      }
+      if ($count % 3 != 0) {
+        echo "</div>";
+      }
+      echo "</div>";
+
+
+
+      // Close the database connection
+      mysqli_close($conn);
+      ?>
 
       <div class="sub-heading">
         <h3>&mdash; Mobile Phones &mdash; </h3>
       </div>
 
-      <div class="food-items">
-        <img src="images/Paneer-Tikka-Masala.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Paneer Tikka Masala (medium)</h5>
-          </div>
-          <p>Cottage cheese with onion, tomato, capsicum and spiced gravy</p>
-        </div>
-      </div>
+      <style>
+        .product-grid {
+          display: flex;
+          flex-wrap: wrap;
+        }
 
-      <div class="food-items">
-        <img src="images/fresh-vegetable.jfif">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Mix vegetable (medium)</h5>
-          </div>
-          <p>Fresh vegetable cooked in medium spiced gravy</p>
-        </div>
-      </div>
+        .product-row {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          margin-bottom: 20px;
+        }
 
-      <div class="food-items">
-        <img src="images/vegetable-madras.png">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Vegetable Madras (mild to medium)</h5>
-          </div>
-          <p>Creamy coconut based delicacy cooked to perfection</p>
-        </div>
-      </div>
+        .product {
+          flex-basis: calc(33.33% - 20px);
+          box-sizing: border-box;
+          padding: 10px;
+          text-align: center;
+        }
 
-      <div class="food-items">
-        <img src="images/Palak-Chole.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Chole Masala/Chole Palak (medium)</h5>
-          </div>
-          <p>Chickpeas cooked in onion tomato gravy or spinach sauce</p>
-        </div>
-      </div>
+        .product img {
+          display: block;
+          margin: 0 auto;
+          max-width: 100%;
+          height: auto;
+          margin-bottom: 10px;
+        }
+      </style>
 
-      <div class="food-items">
-        <img src="images/Aloo-Matar.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Aloo Gobi / Aloo Mutter (medium)</h5>
-          </div>
-          <p>Potatoes cooked with cauliflower or green peas in spiced sauce</p>
-        </div>
-      </div>
+      <?php
+      // Connect to the database
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "bumblebee";
 
-      <div class="food-items">
-        <img src="images/dal-tadka.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Dal Tadka (mild to medium)</h5>
-          </div>
-          <p>Yellow split lentil tempered with garlic, tomato and onion</p>
-        </div>
-      </div>
+      $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-      <div class="food-items">
-        <img src="images/Dal-makhani.jpg">
-        <div class="details">
-          <div class="details-sub">
-            <h5>Dal Makhani (medium)</h5>
-          </div>
-          <p>Black lentil & kidney beans cooked with tomato, cream and butter</p>
-        </div>
-      </div>
+      // Check connection
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
+
+      // Query the database to retrieve products
+      $sql = "SELECT * FROM product WHERE category='MP'";
+      $result = mysqli_query($conn, $sql);
+
+
+
+
+      // Display the products on the webpage
+      echo "<div class='product-grid'>";
+      $count = 0;
+      while ($row = mysqli_fetch_assoc($result)) {
+        if ($count % 3 == 0) {
+          echo "<div class='product-row'>";
+        }
+        echo "<div class='product'>";
+        echo "<img src='" . $row["image"] . "' alt='" . $row["name"] . "' width='200' height='200'><br>";
+        echo "<h3>" . $row["name"] . "</h3>";
+        echo "<p>" . $row["description"] . "</p>";
+        echo "<p><strong>Price:</strong> LKR " . $row["price"] . "</p>";
+        echo "<form action='' method='post'><input type='hidden' name='product_name' value='" . $row["name"] . "'><input type='number' name='quantity' value='1' min='1'><input type='hidden' name='price' value='" . $row["price"] . "'><input type='submit' value='Add to Cart'></form>";
+
+        echo "</div>";
+        $count++;
+        if ($count % 3 == 0) {
+          echo "</div>";
+        }
+      }
+      if ($count % 3 != 0) {
+        echo "</div>";
+      }
+      echo "</div>";
+
+
+
+      // Close the database connection
+      mysqli_close($conn);
+      ?>
+
+
+
 
 
 

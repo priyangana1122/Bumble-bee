@@ -81,7 +81,7 @@
             <td> <a href="../bumble bee/Electronics.php">Electronics</a> </td>
             <td> <a href="../bumble bee/Furniture.php">Furnitures</a> </td>
             <td> <a href="../bumble bee/Login.php">Login</a> </td>
-            <td style="border-right: 0px;"> <a href="../bumble bee/Testingcart.php">Cart</a> </td>
+            <td style="border-right: 0px;"> <a href="../bumble bee/Cart.php">Cart</a> </td>
           </tr>
         </table>
       </ul>
@@ -124,7 +124,35 @@
   <p id="installment"></p>
 
   <button id="pay-now">
-    <a href="https://www.payeasy.lk/SPEClientWeb/ActionController">Pay Now</a></button>
+    <a href="https://www.payeasy.lk/SPEClientWeb/ActionController">Pay Now</a></button><br><br><br>
+
+  <button id="pay-now" onclick="openPopup()">installments</button><br><br>
+
+  <script>
+    function openPopup() {
+      // Create a modal dialog box
+      var popup = window.open("", "Pop-up Window", "width=400,height=200,scrollbars=no");
+
+      // Add content to the pop-up window
+      popup.document.write("<h1>Are you 18+?</h1>");
+      popup.document.write("<button onclick='redirectYes()'>Yes</button>");
+      popup.document.write("<button onclick='redirectNo()'>No</button>");
+
+      // Show the modal dialog box
+      popup.focus();
+    }
+
+    /// Function to redirect to the page for adults
+    function redirectYes() {
+      window.location.href = "https://www.payeasy.lk/SPEClientWeb/ActionController";
+    }
+
+    // Function to redirect to the page for minors
+    function redirectNo() {
+      window.location.href = "../bumble bee/Home.php";
+    }
+  </script>
+
   <script>
     // Get cart items from local storage
     var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -149,7 +177,7 @@
 
         var priceSpan = document.createElement("span");
         priceSpan.classList.add("cart-item-price");
-        priceSpan.textContent = "$" + item.price.toFixed(2);
+        priceSpan.textContent = "lkr " + item.price.toFixed(2);
 
         var removeButton = document.createElement("button");
         removeButton.classList.add("cart-item-remove");
@@ -199,7 +227,7 @@
 
       // Update the total cost in
       // the HTML
-      document.getElementById("total").textContent = "Total: $" + total.toFixed(2);
+      document.getElementById("total").textContent = "Total: LKR " + total.toFixed(2);
     }
 
     // Update the cart when the page loads

@@ -71,7 +71,7 @@
             <td> <a href="../bumble bee/Electronics.php">Electronics</a> </td>
             <td> <a href="../bumble bee/Furniture.php">Furnitures</a> </td>
             <td> <a href="../bumble bee/Login.php">Login</a> </td>
-            <td style="border-right: 0px;"> <a href="../bumble bee/Testingcart.php">Cart</a> </td>
+            <td style="border-right: 0px;"> <a href="../bumble bee/Cart.php">Cart</a> </td>
           </tr>
         </table>
       </ul>
